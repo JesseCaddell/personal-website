@@ -1,0 +1,72 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const experience = [
+  {
+    role: "Senior Systems Engineer",
+    period: "2024 – Present",
+    org: "Aether Infrastructure",
+    description:
+      "Architecting real-time telemetry processing engines in Rust. Reduced pipeline latency by 42% using customized eBPF probes.",
+  },
+  {
+    role: "Software Engineer",
+    period: "2021 – 2024",
+    org: "Matrix DevOps",
+    description:
+      "Designed and maintained scalable distributed logging systems. Managed high-performance WebAssembly runtime deployments.",
+  },
+];
+
+const skills = [
+  "Rust",
+  "TypeScript",
+  "eBPF",
+  "PostgreSQL",
+  "WebAssembly",
+  "Linux Systems",
+  "Retro emulation",
+];
+---
+
+<section id="resume" class:list={["flex flex-col gap-6", className]}>
+  <h2 class="text-lg font-bold">// 03. experience &amp; skills</h2>
+  <div class="flex flex-col items-start gap-10 lg:flex-row">
+    <div class="flex w-full min-w-0 flex-1 flex-col items-start gap-4">
+      {experience.map((job) => (
+        <div class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5">
+          <div class="flex w-full items-center justify-between">
+            <p class="text-base font-bold">{job.role}</p>
+            <p class="text-xs text-accent">{job.period}</p>
+          </div>
+          <p class="text-[13px] text-muted">{job.org}</p>
+          <p class="w-full font-sans text-sm leading-[1.5] text-muted">
+            {job.description}
+          </p>
+        </div>
+      ))}
+    </div>
+    <div class="flex w-full flex-col items-start gap-6 lg:w-[400px] lg:shrink-0">
+      <div class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5">
+        <p class="text-sm font-bold">Core Stack</p>
+        <div class="flex w-full flex-wrap items-start gap-2">
+          {skills.map((skill) => (
+            <span class="rounded bg-chip px-2.5 py-1 text-[11px]">{skill}</span>
+          ))}
+        </div>
+      </div>
+      <div class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5">
+        <p class="text-sm font-bold">Education</p>
+        <p class="text-sm">B.S. in Computer Science</p>
+        <p class="font-sans text-[13px] text-muted">
+          Pacific Institute of Technology
+        </p>
+        <p class="text-[11px] text-accent">2017 – 2021</p>
+      </div>
+    </div>
+  </div>
+</section>
