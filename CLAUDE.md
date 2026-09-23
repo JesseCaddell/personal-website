@@ -10,6 +10,9 @@
 - **Build:** `npm run build` or `npx astro build`
 - **Preview build:** `npm run preview`
 - **Formatting:** `npm run format` (`prettier --write .`)
+- **Chrome must be open** for visual QA (Claude in Chrome extension is used to check
+  rendered pages against Figma). At the start of a session, remind Jesse to open
+  Chrome if it isn't already running.
 
 ## Code Style & Rules
 
