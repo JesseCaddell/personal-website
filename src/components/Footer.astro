@@ -1,0 +1,25 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer
+  class:list={[
+    "flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6 text-xs text-muted",
+    className,
+  ]}
+>
+  <p>© {year} Jesse Caddell. Host: localhost</p>
+  <div class="flex items-start gap-6 text-fg">
+    <a href="https://github.com/JesseCaddell" class="hover:text-accent">
+      Github
+    </a>
+    <a href="mailto:hullablack@gmail.com" class="hover:text-accent">
+      Contact
+    </a>
+  </div>
+</footer>
