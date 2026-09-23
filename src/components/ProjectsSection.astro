@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import ProjectCard from "./ProjectCard.astro";
 
 interface Props {
@@ -7,40 +8,9 @@ interface Props {
 
 const { class: className } = Astro.props;
 
-const projects = [
-  {
-    index: "01",
-    tag: "Database Engine",
-    version: "v1.0.0",
-    name: "Helios-DB",
-    description:
-      "An LSM-tree based embedded key-value store optimized for SSD wear leveling, built from scratch in pure Rust.",
-  },
-  {
-    index: "02",
-    tag: "Sandboxed Runtime",
-    version: "v1.0.0",
-    name: "WasmKernel",
-    description:
-      "A secure, multi-tenant WebAssembly orchestration agent designed for sub-millisecond edge compute startup times.",
-  },
-  {
-    index: "03",
-    tag: "Systems Archeology",
-    version: "v1.0.0",
-    name: "GospelEmulator",
-    description:
-      "A cycle-accurate hardware emulator for 32-bit hand-held consoles, written in TypeScript with a WebGL rasterizer.",
-  },
-  {
-    index: "04",
-    tag: "Network Diagnostics",
-    version: "v1.0.0",
-    name: "NetScan-98",
-    description:
-      "A browser-based packet visualizer mimicking old network analyzer terminals, built using custom raw-socket proxies.",
-  },
-];
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <section id="projects" class:list={["flex flex-col gap-6", className]}>
@@ -48,9 +18,126 @@ const projects = [
     <h2 class="text-lg font-bold">// 02. projects</h2>
     <p class="text-xs text-muted">{projects.length} records loaded</p>
   </div>
-  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-    {projects.map((p) => (
-      <ProjectCard {...p} />
+  <div id="project-grid" class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    {projects.map((p, i) => (
+      <div
+        data-project-card
+        data-slug={p.id}
+        data-repos={JSON.stringify(p.data.repos)}
+        style={`order: ${i}`}
+        hidden={i >= 4}
+      >
+        <ProjectCard
+          slug={p.id}
+          index={String(p.data.order).padStart(2, "0")}
+          tag={p.data.tag}
+          status={p.data.status}
+          name={p.data.name}
+          description={p.data.description}
+        />
+      </div>
     ))}
   </div>
+  <a
+    href="/projects"
+    class="self-start text-xs text-muted transition-colors hover:text-accent"
+  >
+    View all projects →
+  </a>
 </section>
+
+<script>
+  const CACHE_KEY = "gh-pushed-at-cache-v1";
+  const CACHE_TTL_MS = 60 * 60 * 1000;
+
+  type CacheEntry = { pushedAt: string | null; fetchedAt: number };
+  type Cache = Record<string, CacheEntry>;
+
+  function loadCache(): Cache {
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function saveCache(cache: Cache) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
+    } catch {
+      // ignore quota / private-mode errors
+    }
+  }
+
+  async function fetchPushedAt(
+    repo: string,
+    cache: Cache,
+  ): Promise<string | null> {
+    const cached = cache[repo];
+    if (cached && Date.now() - cached.fetchedAt < CACHE_TTL_MS) {
+      return cached.pushedAt;
+    }
+    try {
+      const res = await fetch(`https://api.github.com/repos/${repo}`, {
+        headers: { Accept: "application/vnd.github+json" },
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      const data = await res.json();
+      const pushedAt: string | null = data.pushed_at ?? null;
+      cache[repo] = { pushedAt, fetchedAt: Date.now() };
+      return pushedAt;
+    } catch {
+      cache[repo] = cache[repo] ?? { pushedAt: null, fetchedAt: Date.now() };
+      return cache[repo].pushedAt;
+    }
+  }
+
+  async function reorderProjects() {
+    const cards = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-project-card]"),
+    );
+    if (cards.length === 0) return;
+
+    const cache = loadCache();
+
+    const ranked = await Promise.all(
+      cards.map(async (card) => {
+        const repos: string[] = JSON.parse(card.dataset.repos ?? "[]");
+        const fallbackOrder = Number(card.style.order || "0");
+
+        if (repos.length === 0) {
+          return { card, pushedAt: null as string | null, fallbackOrder };
+        }
+
+        const pushedDates = await Promise.all(
+          repos.map((repo) => fetchPushedAt(repo, cache)),
+        );
+        const latest = pushedDates
+          .filter((d): d is string => Boolean(d))
+          .sort()
+          .at(-1);
+
+        return { card, pushedAt: latest ?? null, fallbackOrder };
+      }),
+    );
+
+    saveCache(cache);
+
+    // Anything we couldn't resolve keeps its static fallback position.
+    const resolved = ranked.filter((r) => r.pushedAt !== null);
+    if (resolved.length === 0) return;
+
+    resolved.sort((a, b) => (a.pushedAt! < b.pushedAt! ? 1 : -1));
+    const unresolved = ranked
+      .filter((r) => r.pushedAt === null)
+      .sort((a, b) => a.fallbackOrder - b.fallbackOrder);
+
+    [...resolved, ...unresolved].forEach((entry, i) => {
+      entry.card.style.order = String(i);
+      entry.card.hidden = i >= 4;
+    });
+  }
+
+  reorderProjects();
+</script>

@@ -40,20 +40,48 @@ No Figma variables are defined in the file, so all values were read directly off
 layers/screenshots. Page background (`#0b0c0e`) was sampled from a screenshot
 since it isn't set on any layer we pulled.
 
-### Content: not started — this is next
+### Projects: done
 
-Every section still has **placeholder copy from the Figma design**, not real
-content:
+Replaced the placeholder cards with real project content, one page per
+project, and homepage rotation based on live GitHub activity:
 
-- Project cards: Helios-DB, WasmKernel, GospelEmulator, NetScan-98 — **confirmed
-  these are placeholder names, not real projects.** Need real projects from Jesse
-  (name, tag, description, stack, links). Count doesn't have to stay at 4.
+- `src/content.config.ts` — `projects` content collection (Content Layer API,
+  `glob` loader over `src/content/projects/*.md`). Schema: `order`, `name`,
+  `tag`, `status`, `description`, `stack[]`, `highlights[]`,
+  `links.{repo,live}`, `repos[]` (`owner/repo` slugs used for GitHub tracking).
+- `src/content/projects/*.md` — all 7 projects from
+  `docs/projects-context-overview.md`, rewritten as public portfolio copy
+  (overview/highlights only — the doc's "Weaknesses/Gaps" and "Draft Resume
+  Bullets" sections are interview-prep material and were deliberately left
+  out of the public site).
+- `src/components/ProjectCard.astro` — now a link to `/projects/[slug]`,
+  takes `status` instead of the old fake `version`.
+- `src/components/ProjectsSection.astro` — renders all 7 cards (3 start
+  `hidden`), plus a "View all projects →" link. An inline client `<script>`
+  fetches `pushed_at` from the public GitHub API per project's `repos[]`
+  (max across multi-repo projects), caches in `localStorage` (~1hr TTL), and
+  reorders/reveals the top 4 most-recently-pushed projects. Silently keeps
+  the static fallback order on any fetch failure — no error UI, no rebuild
+  needed for the homepage to reflect new activity.
+- `src/pages/projects/index.astro` — all 7 projects, fixed order.
+- `src/pages/projects/[slug].astro` — detail page per project (stack chips,
+  body content, highlights, repo/live links).
+- Verified in Chrome: homepage rotation reordered live against real GitHub
+  push times on first load, `/projects` and detail pages render correctly,
+  responsive at ~420px.
+
+Known follow-up: Project Status Sync Bot has no known public repo, so it has
+empty `links`/`repos` in its content file — its card/page just omit those
+sections, which is intentional, not a bug.
+
+### Content: resume section still needs real copy
+
 - Resume section: "Aether Infrastructure" / "Matrix DevOps" / "Pacific Institute
   of Technology" — placeholder, needs real job history + education.
 - Hero tagline/headline ("Building robust infrastructure & auditing computer
   history...") — **not yet confirmed** whether this is real copy or needs rewriting.
 - Project screenshot boxes — empty placeholders (`<Project Screenshot Placeholder
-  for X>`). Jesse will supply real image files to drop into `src/assets/`.
+for X>`). Jesse will supply real image files to drop into `src/assets/`.
 - Nav `[03] Resume` currently just scroll-links to the resume section on-page —
   unclear if it should also/instead link to a downloadable resume PDF.
 - Footer links: Github → `github.com/JesseCaddell` (guessed from git remote,
@@ -65,15 +93,15 @@ through it and commit incrementally to `staging`, same pattern as the layout wor
 
 ## Immediate next step
 
-Waiting on Jesse to send: first project's details (or a doc/repo link to draft
-from), and confirmation on whether the hero tagline/headline is real copy.
+Waiting on Jesse to send: real job history + education for the resume section,
+and confirmation on whether the hero tagline/headline is real copy. Real
+project screenshots also still need to be dropped into `src/assets/` and
+wired into the project cards/detail pages (currently placeholder boxes).
 
 ## Workflow reminders (also in CLAUDE.md)
 
 - Only push to `staging`. Never touch `main` unless explicitly told to.
 - Dev server: `astro dev --background`, manage with `astro dev status` / `stop` / `logs`.
-- No browser extension connection available in this environment — visual checks
-  use headless Chrome screenshots (`chrome.exe --headless=new --screenshot=...`)
-  compared side-by-side against Figma screenshots (`mcp__figma__get_screenshot`),
-  cropped/stacked with Python/PIL in the scratchpad dir.
+- Claude in Chrome extension is available in this environment for visual QA —
+  use it directly instead of headless-screenshot/PIL workarounds.
 - Run `npm run format` (prettier) before committing.

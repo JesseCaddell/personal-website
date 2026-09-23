@@ -1,0 +1,104 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+---
+
+<Layout title={`${data.name} — Jesse Caddell`} description={data.description}>
+  <div class="mx-auto max-w-[1440px] px-6 pt-16 md:px-20">
+    <Header />
+    <article class="mt-12 flex flex-col gap-6">
+      <a
+        href="/projects"
+        class="self-start text-xs text-muted transition-colors hover:text-accent"
+      >
+        ← All projects
+      </a>
+
+      <div class="flex flex-col gap-6 rounded-md border border-line bg-surface p-6 md:p-10">
+        <div class="flex w-full flex-wrap items-center justify-between gap-2 text-xs">
+          <span class="text-accent">
+            [{String(data.order).padStart(2, "0")}] {data.tag}
+          </span>
+          <span class="text-muted">{data.status}</span>
+        </div>
+
+        <h1 class="text-3xl leading-normal font-bold">{data.name}</h1>
+        <p class="font-sans text-sm leading-[1.5] text-muted">
+          {data.description}
+        </p>
+
+        <div class="flex h-[220px] w-full items-center justify-center rounded border border-line bg-mockup">
+          <p class="text-[11px] text-muted">
+            {`<Project Screenshot Placeholder for ${data.name}>`}
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          {data.stack.map((item) => (
+            <span class="rounded border border-line bg-chip px-2 py-1 font-mono text-[11px] text-muted">
+              {item}
+            </span>
+          ))}
+        </div>
+
+        <div class="font-sans text-sm leading-[1.5] text-muted [&_p]:mb-4 [&_p:last-child]:mb-0">
+          <Content />
+        </div>
+
+        {data.highlights.length > 0 && (
+          <div class="flex flex-col gap-2">
+            <p class="text-xs font-bold text-fg">Highlights</p>
+            <ul class="flex flex-col gap-2 font-sans text-sm leading-[1.5] text-muted">
+              {data.highlights.map((h) => (
+                <li class="flex gap-2">
+                  <span class="text-accent">›</span>
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {(data.links.repo || data.links.live) && (
+          <div class="flex flex-wrap gap-6 text-sm text-fg">
+            {data.links.live && (
+              <a
+                href={data.links.live}
+                class="hover:text-accent"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Live site ↗
+              </a>
+            )}
+            {data.links.repo && (
+              <a
+                href={data.links.repo}
+                class="hover:text-accent"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Source ↗
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    </article>
+    <Footer class="mt-12 mb-16" />
+  </div>
+</Layout>
