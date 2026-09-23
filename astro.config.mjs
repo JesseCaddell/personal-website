@@ -6,8 +6,8 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: replace with the real Vercel URL or custom domain once deployed
-  site: "https://personal-website.vercel.app",
+
+  site: "https://personal-website-six-psi-26.vercel.app/",
 
   vite: {
     plugins: [tailwindcss()],

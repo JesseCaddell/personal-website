@@ -1,3 +1,9 @@
+## Git workflow
+
+- **Only push to `staging`.** Never push to or merge into `main` unless explicitly told to.
+- `main` is production: Vercel deploys every push to `main`. When ready to deploy, `staging` is merged into `main`.
+- Remote uses the SSH host alias: `git@jesse-github:JesseCaddell/personal-website.git`.
+
 ## Development
 
 When starting the dev server, use background mode:
