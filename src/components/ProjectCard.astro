@@ -1,0 +1,27 @@
+---
+interface Props {
+  index: string;
+  tag: string;
+  version: string;
+  name: string;
+  description: string;
+}
+
+const { index, tag, version, name, description } = Astro.props;
+---
+
+<div class="flex flex-col items-start gap-4 rounded-md border border-line bg-surface p-6">
+  <div class="flex w-full items-center justify-between text-xs">
+    <span class="text-accent">
+      [{index}] {tag}
+    </span>
+    <span class="text-muted">{version}</span>
+  </div>
+  <p class="w-full text-xl leading-normal font-bold">{name}</p>
+  <p class="w-full font-sans text-sm leading-[1.5] text-muted">{description}</p>
+  <div class="flex h-[100px] w-full items-center justify-center rounded border border-line bg-mockup">
+    <p class="text-[11px] text-muted">
+      {`<Project Screenshot Placeholder for ${name}>`}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const projects = [
+  {
+    index: "01",
+    tag: "Database Engine",
+    version: "v1.0.0",
+    name: "Helios-DB",
+    description:
+      "An LSM-tree based embedded key-value store optimized for SSD wear leveling, built from scratch in pure Rust.",
+  },
+  {
+    index: "02",
+    tag: "Sandboxed Runtime",
+    version: "v1.0.0",
+    name: "WasmKernel",
+    description:
+      "A secure, multi-tenant WebAssembly orchestration agent designed for sub-millisecond edge compute startup times.",
+  },
+  {
+    index: "03",
+    tag: "Systems Archeology",
+    version: "v1.0.0",
+    name: "GospelEmulator",
+    description:
+      "A cycle-accurate hardware emulator for 32-bit hand-held consoles, written in TypeScript with a WebGL rasterizer.",
+  },
+  {
+    index: "04",
+    tag: "Network Diagnostics",
+    version: "v1.0.0",
+    name: "NetScan-98",
+    description:
+      "A browser-based packet visualizer mimicking old network analyzer terminals, built using custom raw-socket proxies.",
+  },
+];
+---
+
+<section id="projects" class:list={["flex flex-col gap-6", className]}>
+  <div class="flex items-center justify-between">
+    <h2 class="text-lg font-bold">// 02. projects</h2>
+    <p class="text-xs text-muted">{projects.length} records loaded</p>
+  </div>
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    {projects.map((p) => (
+      <ProjectCard {...p} />
+    ))}
+  </div>
+</section>
