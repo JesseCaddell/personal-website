@@ -1,0 +1,53 @@
+---
+import divider from "../assets/hero-divider.svg";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section
+  id="about"
+  class:list={["flex flex-col gap-12 lg:flex-row lg:items-center", className]}
+>
+  <div class="flex min-w-0 flex-1 flex-col items-start gap-6">
+    <p class="rounded bg-chip px-2.5 py-1 text-[11px] leading-[14px] font-semibold text-accent uppercase">
+      Systems Engineer &amp; Web Archivist
+    </p>
+    <h1 class="text-[32px] leading-[1.15] font-bold md:text-[40px]">
+      Building robust infrastructure &amp; auditing computer history.
+    </h1>
+    <p class="font-sans text-base leading-[1.6] text-muted">
+      I build high-throughput telemetry pipelines by day and preserve forgotten
+      late-90s digital artifacts by night. Obsessed with low-level performance,
+      clean interfaces, and computational history.
+    </p>
+  </div>
+
+  <div
+    class="flex h-[280px] w-full shrink-0 flex-col gap-4 overflow-hidden rounded-md border border-line bg-surface p-[23px] lg:w-[440px]"
+    aria-hidden="true"
+  >
+    <div class="flex items-center justify-between text-[11px]">
+      <span class="text-accent">sys_status: ACTIVE</span>
+      <span class="text-muted">0x4F92</span>
+    </div>
+    <div class="relative h-0 w-full">
+      <img
+        src={divider.src}
+        width={divider.width}
+        height={divider.height}
+        alt=""
+        class="absolute -top-px left-0 h-px w-full"
+      />
+    </div>
+    <div class="flex flex-1 flex-col items-center justify-center gap-2">
+      <div class="h-2 w-[320px] max-w-full rounded bg-track"></div>
+      <div class="h-2 w-[260px] max-w-full rounded bg-accent"></div>
+      <div class="h-2 w-[180px] max-w-full rounded bg-track"></div>
+      <span class="text-xs text-muted">[Personal Branding Blueprint]</span>
+    </div>
+  </div>
+</section>
