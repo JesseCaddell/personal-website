@@ -1,12 +1,21 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Figma uses the font's default line height for all text */
+  --text-xs--line-height: normal;
+  --text-sm--line-height: normal;
+  --text-base--line-height: normal;
+  --text-lg--line-height: normal;
 
   --color-bg: #0b0c0e;
   --color-fg: #ededf0;
   --color-muted: #7d8296;
   --color-accent: #00ff66;
+  --color-accent-bg: #142f1e;
+  --color-accent-line: #1d5328;
 }
 
 @layer base {

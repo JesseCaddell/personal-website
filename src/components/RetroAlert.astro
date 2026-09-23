@@ -1,0 +1,29 @@
+---
+interface Props {
+  href?: string;
+  class?: string;
+}
+
+// TODO: point at TheMidgarGospel once it exists
+const { href = "#", class: className } = Astro.props;
+---
+
+<aside
+  class:list={[
+    "flex flex-col gap-3 rounded border border-accent-line bg-accent-bg p-[15px] md:flex-row md:items-center md:justify-between",
+    className,
+  ]}
+>
+  <p class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+    <span class="text-[13px] leading-[17px] text-accent">[ALT_PATH]</span>
+    <span class="font-sans text-sm leading-[18px]">
+      Enter the dark archives: View my retro web-shrine, TheMidgarGospel
+    </span>
+  </p>
+  <a
+    href={href}
+    class="shrink-0 text-[13px] leading-[17px] text-accent underline hover:no-underline"
+  >
+    GO TO THE_MIDGAR_GOSPEL →
+  </a>
+</aside>
