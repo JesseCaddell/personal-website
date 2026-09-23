@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@theme {
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-bg: #0b0c0e;
+  --color-fg: #ededf0;
+  --color-muted: #7d8296;
+  --color-accent: #00ff66;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-fg font-mono antialiased;
+  }
+}
