@@ -13,6 +13,9 @@ highlights:
 links:
   repo: "https://github.com/JesseCaddell/Job-Finder"
 repos: ["JesseCaddell/Job-Finder"]
+image:
+  src: "./images/job-finder/pipeline.png"
+  alt: "Job-Finder pipeline, the job search command center"
 ---
 
 A single-page job tracker built to run my own job search: multi-source aggregation, AI-assisted fit scoring against different résumé versions, and shareable boards that sync in real time across devices.

@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
   slug: string;
   index: string;
@@ -6,9 +9,14 @@ interface Props {
   status: string;
   name: string;
   description: string;
+  image?: {
+    src: ImageMetadata;
+    alt: string;
+    position?: "top" | "center" | "bottom";
+  };
 }
 
-const { slug, index, tag, status, name, description } = Astro.props;
+const { slug, index, tag, status, name, description, image } = Astro.props;
 ---
 
 <a
@@ -25,9 +33,21 @@ const { slug, index, tag, status, name, description } = Astro.props;
     {name}
   </p>
   <p class="w-full font-sans text-sm leading-[1.5] text-muted">{description}</p>
-  <div class="flex h-[100px] w-full items-center justify-center rounded border border-line bg-mockup">
-    <p class="text-[11px] text-muted">
-      {`<Project Screenshot Placeholder for ${name}>`}
-    </p>
-  </div>
+  {image ? (
+    <div class="h-[100px] w-full overflow-hidden rounded border border-line bg-mockup">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={960}
+        style={`object-position: ${image.position ?? "top"}`}
+        class="h-full w-full object-cover"
+      />
+    </div>
+  ) : (
+    <div class="flex h-[100px] w-full items-center justify-center rounded border border-line bg-mockup">
+      <p class="text-[11px] text-muted">
+        {`<Project Screenshot Placeholder for ${name}>`}
+      </p>
+    </div>
+  )}
 </a>

@@ -14,6 +14,14 @@ links:
   repo: "https://github.com/next-wave-dev-org/draw-the-block-static-site"
   live: "https://drawtheblock.org"
 repos: ["next-wave-dev-org/draw-the-block-static-site"]
+image:
+  src: "./images/draw-the-block/home.png"
+  alt: "Draw The Block home page"
+gallery:
+  - src: "./images/draw-the-block/events.png"
+    alt: "Draw The Block events page"
+  - src: "./images/draw-the-block/vendors.png"
+    alt: "Draw The Block vendors page"
 ---
 
 The full site architecture for a Seattle art collective's public presence: an Astro build with content collections and Zod-validated schemas, driven entirely by a Decap CMS admin the client uses on their own. Products pull from Shopify at build time, and a Netlify Function handles newsletter signups.

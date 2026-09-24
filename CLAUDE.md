@@ -29,10 +29,10 @@
 ## Model Delegation & Architecture Rules
 
 - **Default Execution (Sonnet 5):** Use for single-file edits, Astro component creation, Tailwind v4 styling, Prettier formatting, standard routing, and routine Git actions.
-- **Advisor Consultation (Opus 5.5):** Seek advisor consultation *only* when:
-    - Planning major multi-file architectural refactors or layout rewrites.
-    - Resolving complex or persistent build failures that fail after 2 attempts.
-    - Designing state management strategy across global layouts/components.
+- **Advisor Consultation (Opus 5.5):** Seek advisor consultation _only_ when:
+  - Planning major multi-file architectural refactors or layout rewrites.
+  - Resolving complex or persistent build failures that fail after 2 attempts.
+  - Designing state management strategy across global layouts/components.
 - **Advisor Rules:** Keep advisor prompts strictly focused on strategy and edge-case identification. Do not ask the advisor to write mundane component markup.
 
 ## Documentation & Reference

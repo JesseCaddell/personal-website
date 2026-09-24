@@ -1,6 +1,6 @@
 ---
 order: 2
-name: "NWD Central Hub"
+name: "NWD Portal"
 tag: "Team Platform — Nonprofit"
 status: "Deployed Prototype"
 description: "Role-based platform connecting contractors, clients, and admins for Next Wave Dev, a nonprofit that places graduates on real client projects."
@@ -22,6 +22,15 @@ links:
   repo: "https://github.com/next-wave-dev-org/nwd-central-hub-prototype"
   live: "https://nwd-central-hub-prototype.vercel.app"
 repos: ["next-wave-dev-org/nwd-central-hub-prototype"]
+image:
+  src: "./images/nwd-central-hub/overview.png"
+  alt: "NWD Portal sign-in screen"
+  position: "center"
+gallery:
+  - src: "./images/nwd-central-hub/dashboard.png"
+    alt: "NWD Portal dashboard"
+  - src: "./images/nwd-central-hub/projects.png"
+    alt: "NWD Portal projects view"
 ---
 
 A unified platform that replaces a manual onboarding and coordination process with role-based dashboards for admins, clients, and contractors. Built with a 4+ person team, with a focus on turning a client-side prototype into a real, authenticated multi-user app.

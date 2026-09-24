@@ -30,6 +30,7 @@ const projects = (await getCollection("projects")).sort(
             status={p.data.status}
             name={p.data.name}
             description={p.data.description}
+            image={p.data.image}
           />
         ))}
       </div>

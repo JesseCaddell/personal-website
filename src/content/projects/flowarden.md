@@ -24,6 +24,14 @@ links:
 repos:
   - "JesseCaddell/ad490-workflow-automator-api"
   - "JesseCaddell/ad490-workflow-automator-web"
+image:
+  src: "./images/flowarden/dashboard.png"
+  alt: "Flowarden dashboard"
+gallery:
+  - src: "./images/flowarden/workflow.png"
+    alt: "Flowarden workflow view"
+  - src: "./images/flowarden/create-workflow.png"
+    alt: "Flowarden create workflow screen"
 ---
 
 A GitHub App plus web dashboard that turns repository events into automated workflows: webhook events trigger condition-based rules and sequential, user-defined actions like labeling, comments, and reviewer requests. Scoped out of a production automation bot already running org-wide.

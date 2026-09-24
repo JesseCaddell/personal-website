@@ -14,6 +14,12 @@ highlights:
 links:
   repo: "https://github.com/next-wave-dev-org/card-cave-games-shopify-storefront"
 repos: ["next-wave-dev-org/card-cave-games-shopify-storefront"]
+image:
+  src: "./images/card-cave-games/home.png"
+  alt: "Card Cave Games home page"
+gallery:
+  - src: "./images/card-cave-games/pokemon-singles.png"
+    alt: "Card Cave Games Pokemon singles collection page"
 ---
 
 A ground-up storefront build for a trading card game shop: home page, collection pages with faceted filtering, product detail pages, and a rebuilt cart, delivered in disciplined phases each backed by an issue, a PR, and verification screenshots.
