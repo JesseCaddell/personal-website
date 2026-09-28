@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Resume — Jesse Caddell"
+  description="Download Jesse Caddell's resume (PDF)."
+>
+  <div class="mx-auto max-w-[1440px] px-6 pt-16 md:px-20">
+    <Header />
+    <section class="mt-12 flex flex-col gap-6">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <h2 class="text-lg font-bold">// resume</h2>
+        <a
+          href="/jesse-caddell-resume.pdf"
+          download="jesse-caddell-resume.pdf"
+          class="rounded-md border border-accent-line bg-accent-bg px-4 py-2 text-xs font-semibold text-accent transition-colors hover:bg-accent hover:text-bg"
+        >
+          Download PDF ↓
+        </a>
+      </div>
+      <div class="overflow-hidden rounded-md border border-line bg-surface">
+        <embed
+          src="/jesse-caddell-resume.pdf"
+          type="application/pdf"
+          class="h-[80vh] w-full"
+        />
+      </div>
+      <a
+        href="/"
+        class="self-start text-xs text-muted transition-colors hover:text-accent"
+      >
+        ← Back home
+      </a>
+    </section>
+    <Footer class="mt-12 mb-16" />
+  </div>
+</Layout>
