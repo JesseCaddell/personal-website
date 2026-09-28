@@ -42,7 +42,7 @@ const { Content } = await render(project);
           {data.description}
         </p>
 
-        {data.image ? (
+        {data.image && (
           <div class="h-[220px] w-full overflow-hidden rounded border border-line bg-mockup">
             <Image
               src={data.image.src}
@@ -51,12 +51,6 @@ const { Content } = await render(project);
               style={`object-position: ${data.image.position ?? "top"}`}
               class="h-full w-full object-cover"
             />
-          </div>
-        ) : (
-          <div class="flex h-[220px] w-full items-center justify-center rounded border border-line bg-mockup">
-            <p class="text-[11px] text-muted">
-              {`<Project Screenshot Placeholder for ${data.name}>`}
-            </p>
           </div>
         )}
 

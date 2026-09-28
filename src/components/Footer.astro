@@ -5,6 +5,7 @@ interface Props {
 
 const { class: className } = Astro.props;
 const year = new Date().getFullYear();
+const fallbackHost = Astro.site?.hostname ?? "localhost";
 ---
 
 <footer
@@ -13,7 +14,9 @@ const year = new Date().getFullYear();
     className,
   ]}
 >
-  <p>© {year} Jesse Caddell. Host: localhost</p>
+  <p>
+    © {year} Jesse Caddell. Host: <span id="footer-host">{fallbackHost}</span>
+  </p>
   <div class="flex items-start gap-6 text-fg">
     <a href="https://github.com/JesseCaddell" class="hover:text-accent">
       Github
@@ -23,3 +26,8 @@ const year = new Date().getFullYear();
     </a>
   </div>
 </footer>
+
+<script>
+  const el = document.getElementById("footer-host");
+  if (el) el.textContent = window.location.hostname;
+</script>

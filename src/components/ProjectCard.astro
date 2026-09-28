@@ -33,7 +33,7 @@ const { slug, index, tag, status, name, description, image } = Astro.props;
     {name}
   </p>
   <p class="w-full font-sans text-sm leading-[1.5] text-muted">{description}</p>
-  {image ? (
+  {image && (
     <div class="h-[100px] w-full overflow-hidden rounded border border-line bg-mockup">
       <Image
         src={image.src}
@@ -42,12 +42,6 @@ const { slug, index, tag, status, name, description, image } = Astro.props;
         style={`object-position: ${image.position ?? "top"}`}
         class="h-full w-full object-cover"
       />
-    </div>
-  ) : (
-    <div class="flex h-[100px] w-full items-center justify-center rounded border border-line bg-mockup">
-      <p class="text-[11px] text-muted">
-        {`<Project Screenshot Placeholder for ${name}>`}
-      </p>
     </div>
   )}
 </a>
