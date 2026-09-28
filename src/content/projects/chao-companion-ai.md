@@ -29,7 +29,7 @@ image:
 video:
   src: "https://files.catbox.moe/tvn3p2.mp4"
 credits:
-  - label: "L2D Artist/Rigger"
+  - label: "L2D Artist/Rig"
     href: "https://vgen.co/LuckCapsule"
 ---
 
