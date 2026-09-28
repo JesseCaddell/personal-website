@@ -13,6 +13,7 @@ interface Props {
     src: ImageMetadata;
     alt: string;
     position?: "top" | "center" | "bottom";
+    frame?: boolean;
   };
 }
 
@@ -33,15 +34,24 @@ const { slug, index, tag, status, name, description, image } = Astro.props;
     {name}
   </p>
   <p class="w-full font-sans text-sm leading-[1.5] text-muted">{description}</p>
-  {image && (
-    <div class="h-[100px] w-full overflow-hidden rounded border border-line bg-mockup">
-      <Image
-        src={image.src}
-        alt={image.alt}
-        width={960}
-        style={`object-position: ${image.position ?? "top"}`}
-        class="h-full w-full object-cover"
-      />
-    </div>
+  {image && image.frame === false ? (
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={480}
+      class="mx-auto h-[100px] w-auto"
+    />
+  ) : (
+    image && (
+      <div class="h-[100px] w-full overflow-hidden rounded border border-line bg-mockup">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={960}
+          style={`object-position: ${image.position ?? "top"}`}
+          class="h-full w-full object-cover"
+        />
+      </div>
+    )
   )}
 </a>

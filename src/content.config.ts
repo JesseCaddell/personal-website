@@ -22,6 +22,7 @@ const projects = defineCollection({
           src: image(),
           alt: z.string(),
           position: z.enum(["top", "center", "bottom"]).optional(),
+          frame: z.boolean().optional(),
         })
         .optional(),
       gallery: z

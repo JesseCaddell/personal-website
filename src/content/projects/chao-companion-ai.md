@@ -23,9 +23,9 @@ links:
   repo: "https://github.com/JesseCaddell/chao_companion_ai"
 repos: ["JesseCaddell/chao_companion_ai"]
 image:
-  src: "./images/chao-companion-ai/companion.png"
+  src: "./images/chao-companion-ai/companion-full.png"
   alt: "The Chao Companion AI character model in VTube Studio"
-  position: "center"
+  frame: false
 video:
   src: "https://files.catbox.moe/tvn3p2.mp4"
 ---

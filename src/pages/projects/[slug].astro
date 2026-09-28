@@ -42,7 +42,7 @@ const { Content } = await render(project);
           {data.description}
         </p>
 
-        {data.image && (
+        {data.image && data.image.frame !== false && (
           <div class="h-[220px] w-full overflow-hidden rounded border border-line bg-mockup">
             <Image
               src={data.image.src}
