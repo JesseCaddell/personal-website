@@ -1,43 +1,63 @@
-# Astro Starter Kit: Minimal
+# jesse-caddell.dev
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Jesse Caddell's personal portfolio site: a retro-terminal-styled single page with a hero
+profile, a live project feed, and a resume/experience section, plus dedicated pages per
+project and a downloadable resume.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Built with [Astro](https://astro.build) and [Tailwind CSS v4](https://tailwindcss.com).
 
-## 🚀 Project Structure
+## Features
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Hero** — profile photo in a terminal-styled status panel, bio, and links.
+- **Projects** — homepage shows the 4 most recently active projects, reordered
+  client-side by live GitHub push activity (`src/components/ProjectsSection.astro`),
+  with a `/projects` page listing all of them in fixed catalog order. Each project has
+  its own detail page (`src/pages/projects/[slug].astro`) with stack, highlights,
+  screenshots/video, and links.
+- **Resume** — an "Experience & Skills" section on the homepage, plus a dedicated
+  `/resume` page with an inline PDF preview and a download button.
+
+## Project structure
 
 ```text
 /
-├── public/
+├── public/                        # static assets (favicon, resume PDF)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/                    # images imported through Astro's image pipeline
+│   ├── components/                # Header, Hero, ProjectsSection, ResumeSection, Footer, etc.
+│   ├── content/
+│   │   ├── projects/*.md          # one file per project (see docs/new-project-template.md)
+│   │   └── projects/images/       # per-project screenshots
+│   ├── content.config.ts          # zod schema for the `projects` content collection
+│   ├── layouts/Layout.astro       # <head>, fonts, meta
+│   └── pages/                     # index, /projects, /projects/[slug], /resume
+├── docs/                          # local-only reference material (gitignored where private)
+└── astro.config.mjs
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Run from the project root:
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command           | Action                                   |
+| :---------------- | :--------------------------------------- |
+| `npm install`     | Install dependencies                     |
+| `npm run dev`     | Start the dev server at `localhost:4321` |
+| `npm run build`   | Build the production site to `./dist/`   |
+| `npm run preview` | Preview the production build locally     |
+| `npm run format`  | Format the codebase with Prettier        |
 
-## 🧞 Commands
+Requires Node `>=22.12.0`.
 
-All commands are run from the root of the project, from a terminal:
+## Adding a project
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Copy the template at `docs/new-project-template.md` into
+`src/content/projects/<slug>.md` and fill it in — it documents every field
+(`order`, `repos` for recency tracking, optional `image`/`gallery`/`video`/`credits`,
+etc.).
 
-## 👀 Want to learn more?
+## Deployment
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `staging` is the working branch — all changes are pushed there first.
+- `main` is production; Vercel auto-deploys on push. Merge `staging` into `main` only
+  when ready to go live.
