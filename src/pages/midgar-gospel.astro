@@ -1,0 +1,50 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="The Midgar Gospel — Coming Soon"
+  description="TheMidgarGospel, Jesse Caddell's retro web-shrine — coming soon."
+>
+  <div class="midgar-theme flex min-h-screen flex-col items-center justify-center gap-8 px-6 py-16 text-center">
+    <div class="flex items-center gap-3">
+      <span class="size-2.5 rounded-full bg-accent" aria-hidden="true"></span>
+      <span class="text-sm font-bold">the midgar gospel</span>
+      <span class="text-xs text-muted">// web.shrine</span>
+    </div>
+
+    <div class="flex w-full max-w-[480px] flex-col gap-6 rounded-md border border-line bg-surface p-8">
+      <div class="flex items-center justify-between text-[11px]">
+        <span class="text-accent">sys_status: BUILDING</span>
+        <span class="text-muted">0x4D47</span>
+      </div>
+
+      <div class="flex h-[220px] w-full items-center justify-center overflow-hidden rounded border border-line bg-mockup">
+        <p class="text-[11px] text-muted">[GIF placeholder]</p>
+      </div>
+
+      <div class="flex flex-col items-start gap-3 text-left">
+        <p class="rounded bg-chip px-2.5 py-1 text-[11px] leading-[14px] font-semibold text-accent uppercase">
+          Retro Web-Shrine
+        </p>
+        <h1 class="text-2xl leading-normal font-bold">Coming Soon</h1>
+        <p class="font-sans text-sm leading-[1.6] text-muted">
+          A dark archive is under construction. Check back soon for the full
+          shrine.
+        </p>
+      </div>
+    </div>
+
+    <a href="/" class="text-xs text-muted transition-colors hover:text-accent">
+      ← Back to jesse caddell // dev.profile
+    </a>
+  </div>
+</Layout>
+
+<style>
+  .midgar-theme {
+    --color-accent: #b026ff;
+    --color-accent-bg: #241530;
+    --color-accent-line: #4a1f73;
+  }
+</style>
