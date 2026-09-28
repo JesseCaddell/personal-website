@@ -22,6 +22,8 @@ highlights:
 links:
   repo: "https://github.com/JesseCaddell/chao_companion_ai"
 repos: ["JesseCaddell/chao_companion_ai"]
+video:
+  src: "https://files.catbox.moe/tvn3p2.mp4"
 ---
 
 A real-time AI companion character rendered in VTube Studio: it listens to a streamer's voice and Twitch chat, replies with synthesized speech, and expresses itself physically through emotes and continuous procedural motion, building memory of returning viewers across sessions.

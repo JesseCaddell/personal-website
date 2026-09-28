@@ -54,6 +54,23 @@ const { Content } = await render(project);
           </div>
         )}
 
+        {data.video && (
+          <div class="w-full overflow-hidden rounded border border-line bg-mockup">
+            <video
+              src={data.video.src}
+              poster={data.video.poster?.src}
+              controls
+              preload="metadata"
+              class="aspect-video w-full"
+            >
+              Your browser doesn't support embedded video.
+              <a href={data.video.src} class="text-accent">
+                Watch it directly ↗
+              </a>
+            </video>
+          </div>
+        )}
+
         <div class="flex flex-wrap gap-2">
           {data.stack.map((item) => (
             <span class="rounded border border-line bg-chip px-2 py-1 font-mono text-[11px] text-muted">

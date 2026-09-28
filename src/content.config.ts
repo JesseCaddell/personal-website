@@ -33,6 +33,12 @@ const projects = defineCollection({
           }),
         )
         .optional(),
+      video: z
+        .object({
+          src: z.string(),
+          poster: image().optional(),
+        })
+        .optional(),
     }),
 });
 
