@@ -12,6 +12,9 @@ highlights:
   - "The pattern it established was later generalized into Flowarden's configurable rules engine"
 links: {}
 repos: []
+credits:
+  - label: "Setup Guide"
+    href: "https://github.com/SeattleColleges/SeattleColleges-AD-Practicum-Wiki/wiki/Project-Status-Sync"
 ---
 
 An org-wide bot and Actions workflow that keeps GitHub Projects v2 status fields synced to real issue and PR state, removing a manual chore across every active team repo. Its success in production is what led directly to generalizing the idea into Flowarden.
