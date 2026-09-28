@@ -7,7 +7,7 @@
    leave in, but strip them once you're done for a cleaner diff).
 3. Drop images in `src/content/projects/images/<slug>/` and point `image`/
    `gallery` at them with relative paths (`./images/<slug>/whatever.png`).
-4. `order` controls the *fallback* position before the homepage's live
+4. `order` controls the _fallback_ position before the homepage's live
    GitHub-recency rotation kicks in — just give it the next unused integer
    (check the other files in `src/content/projects/` for the highest one in
    use; they don't need to be contiguous).
@@ -47,6 +47,5 @@ gallery: # optional, delete whole block if none
   - src: "./images/<slug>/extra.png"
     alt: "Descriptive alt text"
 ---
-
 One or two paragraphs of body copy for the detail page.
 ```

@@ -7,29 +7,52 @@ const { class: className } = Astro.props;
 
 const experience = [
   {
-    role: "Senior Systems Engineer",
+    role: "Founding Board Member & Secretary",
     period: "2024 – Present",
-    org: "Aether Infrastructure",
+    org: "NextWaveDev (Nonprofit)",
     description:
-      "Architecting real-time telemetry processing engines in Rust. Reduced pipeline latency by 42% using customized eBPF probes.",
+      "Co-founded a nonprofit building software for community and creative partners, serving as primary developer on two live client sites — drawtheblock.org and a custom Shopify storefront for Card Cave Games. Configured nextwavedev.org infrastructure (DNS, email, OAuth, Stripe) and authored the org's client services framework.",
   },
   {
-    role: "Software Engineer",
-    period: "2021 – 2024",
-    org: "Matrix DevOps",
+    role: "Founder / Product & Engineering Lead",
+    period: "2026",
+    org: "Flowarden — Capstone, North Seattle College",
     description:
-      "Designed and maintained scalable distributed logging systems. Managed high-performance WebAssembly runtime deployments.",
+      "Designed and built a GitHub App workflow-automation platform (TypeScript, Express 5, Next.js) with HMAC-verified webhooks, a deterministic rules engine, and a Zod-validated Workflow Builder API covered by ~40 tests. Delivered all 7 planned epics on an 11-week schedule with full architecture docs and a dependency-ordered roadmap.",
+  },
+  {
+    role: "Technical Program Manager",
+    period: "2024 – 2025",
+    org: "Application Development Practicum, North Seattle College",
+    description:
+      "Partnered with PMs and technical leads across 15–20 engineers per quarter, and built a GitHub Actions workflow that automates GitHub Projects v2 card movement — deployed org-wide, cutting board coordination overhead by roughly 50%. Served as liaison between Application Development and Art, escalating delivery risks with structured status updates.",
   },
 ];
 
 const skills = [
-  "Rust",
+  "Program Leadership",
+  "Scrum Facilitation",
+  "Stakeholder Alignment",
   "TypeScript",
-  "eBPF",
-  "PostgreSQL",
-  "WebAssembly",
-  "Linux Systems",
-  "Retro emulation",
+  "Next.js / React",
+  "Supabase",
+  "GitHub Actions",
+  "REST APIs & Webhooks",
+  "Claude API / LLMs",
+  "Technical Documentation",
+];
+
+const education = [
+  {
+    degree: "Bachelor of Applied Science (BAS), Application Development",
+    org: "North Seattle College — Seattle, WA",
+    period: "Graduated June 2026",
+  },
+  {
+    degree: "Associate of Applied Science (AAS-T)",
+    org: "North Seattle College — Seattle, WA",
+    period: null,
+  },
 ];
 ---
 
@@ -51,7 +74,10 @@ const skills = [
         </p>
       </div>
     ))}
-    <div class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-2 lg:row-start-1">
+    <div
+      class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-2"
+      style="grid-row: 1"
+    >
       <p class="text-sm font-bold">Core Stack</p>
       <div class="flex w-full flex-wrap items-start gap-2">
         {skills.map((skill) => (
@@ -59,13 +85,16 @@ const skills = [
         ))}
       </div>
     </div>
-    <div class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-2 lg:row-start-2">
-      <p class="text-sm font-bold">Education</p>
-      <p class="text-sm">B.S. in Computer Science</p>
-      <p class="font-sans text-[13px] text-muted">
-        Pacific Institute of Technology
-      </p>
-      <p class="text-[11px] text-accent">2017 – 2021</p>
-    </div>
+    {education.map((edu, i) => (
+      <div
+        class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-2"
+        style={`grid-row: ${i + 2}`}
+      >
+        <p class="text-sm font-bold">Education</p>
+        <p class="text-sm">{edu.degree}</p>
+        <p class="font-sans text-[13px] text-muted">{edu.org}</p>
+        {edu.period && <p class="text-[11px] text-accent">{edu.period}</p>}
+      </div>
+    ))}
   </div>
 </section>
