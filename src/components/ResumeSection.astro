@@ -61,8 +61,14 @@ const education = [
   <div class="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_400px]">
     {experience.map((job, i) => (
       <div
-        class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-1"
-        style={`grid-row: ${i + 1}`}
+        class:list={[
+          "flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-1",
+          i === 0
+            ? "lg:row-start-1"
+            : i === 1
+              ? "lg:row-start-2"
+              : "lg:row-start-3",
+        ]}
       >
         <div class="flex w-full items-center justify-between">
           <p class="text-base font-bold">{job.role}</p>
@@ -74,10 +80,7 @@ const education = [
         </p>
       </div>
     ))}
-    <div
-      class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-2"
-      style="grid-row: 1"
-    >
+    <div class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-2 lg:row-start-1">
       <p class="text-sm font-bold">Core Stack</p>
       <div class="flex w-full flex-wrap items-start gap-2">
         {skills.map((skill) => (
@@ -87,8 +90,10 @@ const education = [
     </div>
     {education.map((edu, i) => (
       <div
-        class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-2"
-        style={`grid-row: ${i + 2}`}
+        class:list={[
+          "flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-2",
+          i === 0 ? "lg:row-start-2" : "lg:row-start-3",
+        ]}
       >
         <p class="text-sm font-bold">Education</p>
         <p class="text-sm">{edu.degree}</p>
