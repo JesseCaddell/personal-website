@@ -26,3 +26,16 @@ pnpm-debug.log*
 # vercel
 .vercel
 .env*.local
+
+# private resume reference material (contains contact info / interview prep)
+docs/resume-project-context.md
+docs/*.docx
+
+# raw source photo — the site uses the copy in src/assets/
+docs/2025-08_Professional Portrait-64.jpg
+
+# scratch Figma mockup reference
+docs/screenshots/
+
+# intermediate PDF export — the site serves the copy in public/
+docs/jesse-caddell-resume.pdf

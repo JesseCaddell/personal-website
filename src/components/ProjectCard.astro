@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  slug: string;
+  index: string;
+  tag: string;
+  status: string;
+  name: string;
+  description: string;
+  image?: {
+    src: ImageMetadata;
+    alt: string;
+    position?: "top" | "center" | "bottom";
+    frame?: boolean;
+  };
+}
+
+const { slug, index, tag, status, name, description, image } = Astro.props;
+---
+
+<a
+  href={`/projects/${slug}`}
+  class="group flex flex-col items-start gap-4 rounded-md border border-line bg-surface p-6 transition-colors hover:border-accent"
+>
+  <div class="flex w-full items-center justify-between text-xs">
+    <span class="text-accent">
+      [<span data-index>{index}</span>] {tag}
+    </span>
+    <span class="text-muted">{status}</span>
+  </div>
+  <p class="w-full text-xl leading-normal font-bold group-hover:text-accent">
+    {name}
+  </p>
+  <p class="w-full font-sans text-sm leading-[1.5] text-muted">{description}</p>
+  {image && image.frame === false ? (
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={480}
+      class="mx-auto h-[100px] w-auto"
+    />
+  ) : (
+    image && (
+      <div class="h-[100px] w-full overflow-hidden rounded border border-line bg-mockup">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={960}
+          style={`object-position: ${image.position ?? "top"}`}
+          class="h-full w-full object-cover"
+        />
+      </div>
+    )
+  )}
+</a>

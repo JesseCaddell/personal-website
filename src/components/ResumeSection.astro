@@ -1,0 +1,105 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const experience = [
+  {
+    role: "Founding Board Member & Secretary",
+    period: "2024 – Present",
+    org: "NextWaveDev (Nonprofit)",
+    description:
+      "Co-founded a nonprofit building software for community and creative partners, serving as primary developer on two live client sites — drawtheblock.org and a custom Shopify storefront for Card Cave Games. Configured nextwavedev.org infrastructure (DNS, email, OAuth, Stripe) and authored the org's client services framework.",
+  },
+  {
+    role: "Founder / Product & Engineering Lead",
+    period: "2026",
+    org: "Flowarden — Capstone, North Seattle College",
+    description:
+      "Designed and built a GitHub App workflow-automation platform (TypeScript, Express 5, Next.js) with HMAC-verified webhooks, a deterministic rules engine, and a Zod-validated Workflow Builder API covered by ~40 tests. Delivered all 7 planned epics on an 11-week schedule with full architecture docs and a dependency-ordered roadmap.",
+  },
+  {
+    role: "Technical Program Manager",
+    period: "2024 – 2025",
+    org: "Application Development Practicum, North Seattle College",
+    description:
+      "Partnered with PMs and technical leads across 15–20 engineers per quarter, and built a GitHub Actions workflow that automates GitHub Projects v2 card movement — deployed org-wide, cutting board coordination overhead by roughly 50%. Served as liaison between Application Development and Art, escalating delivery risks with structured status updates.",
+  },
+];
+
+const skills = [
+  "Program Leadership",
+  "Scrum Facilitation",
+  "Stakeholder Alignment",
+  "TypeScript",
+  "Next.js / React",
+  "Supabase",
+  "GitHub Actions",
+  "REST APIs & Webhooks",
+  "Claude API / LLMs",
+  "Technical Documentation",
+];
+
+const education = [
+  {
+    degree: "Bachelor of Applied Science (BAS), Application Development",
+    org: "North Seattle College — Seattle, WA",
+    period: "Graduated June 2026",
+  },
+  {
+    degree: "Associate of Applied Science (AAS-T)",
+    org: "North Seattle College — Seattle, WA",
+    period: "Graduated June 2023",
+  },
+];
+---
+
+<section id="resume" class:list={["flex flex-col gap-6", className]}>
+  <h2 class="text-lg font-bold">// 03. experience &amp; skills</h2>
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_400px]">
+    {experience.map((job, i) => (
+      <div
+        class:list={[
+          "flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-1",
+          i === 0
+            ? "lg:row-start-1"
+            : i === 1
+              ? "lg:row-start-2"
+              : "lg:row-start-3",
+        ]}
+      >
+        <div class="flex w-full items-center justify-between">
+          <p class="text-base font-bold">{job.role}</p>
+          <p class="text-xs text-accent">{job.period}</p>
+        </div>
+        <p class="text-[13px] text-muted">{job.org}</p>
+        <p class="w-full font-sans text-sm leading-[1.5] text-muted">
+          {job.description}
+        </p>
+      </div>
+    ))}
+    <div class="flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-2 lg:row-start-1">
+      <p class="text-sm font-bold">Core Stack</p>
+      <div class="flex w-full flex-wrap items-start gap-2">
+        {skills.map((skill) => (
+          <span class="rounded bg-chip px-2.5 py-1 text-[11px]">{skill}</span>
+        ))}
+      </div>
+    </div>
+    {education.map((edu, i) => (
+      <div
+        class:list={[
+          "flex w-full flex-col items-start gap-3 rounded-md border border-line bg-surface p-5 lg:col-start-2",
+          i === 0 ? "lg:row-start-2" : "lg:row-start-3",
+        ]}
+      >
+        <p class="text-sm font-bold">Education</p>
+        <p class="text-sm">{edu.degree}</p>
+        <p class="font-sans text-[13px] text-muted">{edu.org}</p>
+        {edu.period && <p class="text-[11px] text-accent">{edu.period}</p>}
+      </div>
+    ))}
+  </div>
+</section>

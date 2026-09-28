@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import divider from "../assets/hero-divider.svg";
+import profilePhoto from "../assets/profile-photo.jpg";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section
+  id="about"
+  class:list={["flex flex-col gap-12 lg:flex-row lg:items-center", className]}
+>
+  <div class="flex min-w-0 flex-1 flex-col items-start gap-6">
+    <p class="rounded bg-chip px-2.5 py-1 text-[11px] leading-[14px] font-semibold text-accent uppercase">
+      Software Architecture &amp; AI-Assisted Development
+    </p>
+    <h1 class="text-[32px] leading-[1.15] font-bold md:text-[40px]">
+      Good systems are good systems, whether they're in production or a 2002
+      MMO.
+    </h1>
+    <p class="font-sans text-base leading-[1.6] text-muted">
+      I do full-stack development, software architecture, and automation for a
+      living, increasingly with AI agents doing the heavy lifting while I focus
+      on design and review. And yes, I still think about Ragnarok Online's class
+      system more than is probably normal.
+    </p>
+  </div>
+
+  <div class="flex h-[280px] w-full shrink-0 flex-col overflow-hidden rounded-md border border-line bg-surface lg:w-[440px]">
+    <div class="flex flex-col gap-[10px] p-[23px] pb-0">
+      <div
+        class="flex items-center justify-between text-[11px]"
+        aria-hidden="true"
+      >
+        <span class="text-accent">sys_status: ACTIVE</span>
+        <span class="text-muted">0x4F92</span>
+      </div>
+      <div class="relative h-0 w-full">
+        <img
+          src={divider.src}
+          width={divider.width}
+          height={divider.height}
+          alt=""
+          class="absolute -top-px left-0 h-px w-full"
+        />
+      </div>
+    </div>
+    <div class="mt-[8px] flex min-h-0 flex-1 flex-col items-center gap-2 px-[23px] pb-2">
+      <div class="relative h-[176px] w-[176px] shrink-0 overflow-hidden rounded-full border-2 border-accent">
+        <Image
+          src={profilePhoto}
+          alt="Jesse Caddell"
+          width={352}
+          class="absolute inset-0 h-full w-full object-cover object-top"
+        />
+      </div>
+      <div class="flex flex-col items-center gap-[2px] text-center">
+        <p class="text-sm font-bold">jesse.caddell</p>
+        <p class="text-[11px] text-accent">// full-stack dev</p>
+      </div>
+    </div>
+  </div>
+</section>

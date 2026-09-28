@@ -1,9 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import RetroAlert from "../components/RetroAlert.astro";
+import Hero from "../components/Hero.astro";
+import ProjectsSection from "../components/ProjectsSection.astro";
+import ResumeSection from "../components/ResumeSection.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout>
-  <main class="mx-auto flex min-h-screen max-w-3xl items-center px-6">
-    <h1 class="text-4xl font-bold tracking-tight">Coming soon</h1>
-  </main>
+  <div class="mx-auto max-w-[1440px] px-6 pt-16 md:px-20">
+    <Header />
+    <RetroAlert class="mt-12" />
+    <Hero class="mt-12" />
+    <ProjectsSection class="mt-12" />
+    <ResumeSection class="mt-12" />
+    <Footer class="mt-12 mb-16" />
+  </div>
 </Layout>

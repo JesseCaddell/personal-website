@@ -1,0 +1,31 @@
+---
+const links = [
+  { href: "/#about", label: "[01] About" },
+  { href: "/#projects", label: "[02] Projects" },
+  { href: "/#resume", label: "[03] Experience" },
+  { href: "/resume", label: "[04] Resume" },
+];
+
+const activeHref = Astro.url.pathname === "/resume" ? "/resume" : "/#about";
+---
+
+<header class="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+  <a href="/" class="flex items-center gap-3">
+    <span class="size-2.5 rounded-full bg-accent" aria-hidden="true"></span>
+    <span class="text-base font-bold">jesse caddell</span>
+    <span class="text-xs text-muted">// dev.profile</span>
+  </a>
+  <nav class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm sm:gap-x-8">
+    {links.map(({ href, label }) => (
+      <a
+        href={href}
+        class:list={[
+          "whitespace-nowrap transition-colors hover:text-fg",
+          href === activeHref ? "text-fg" : "text-muted",
+        ]}
+      >
+        {label}
+      </a>
+    ))}
+  </nav>
+</header>

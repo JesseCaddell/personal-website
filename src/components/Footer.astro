@@ -1,0 +1,41 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const year = new Date().getFullYear();
+const fallbackHost = Astro.site?.hostname ?? "localhost";
+---
+
+<footer
+  class:list={[
+    "flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6 text-xs text-muted",
+    className,
+  ]}
+>
+  <p>
+    © {year} Jesse Caddell | Host: <span id="footer-host">{fallbackHost}</span>
+  </p>
+  <div class="flex items-start gap-6 text-fg">
+    <a href="https://github.com/JesseCaddell" class="hover:text-accent">
+      Github
+    </a>
+    <a
+      href="https://linkedin.com/in/jesse-caddell/"
+      class="hover:text-accent"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      LinkedIn
+    </a>
+    <a href="mailto:jcaddell.tech@gmail.com" class="hover:text-accent">
+      Contact
+    </a>
+  </div>
+</footer>
+
+<script>
+  const el = document.getElementById("footer-host");
+  if (el) el.textContent = window.location.hostname;
+</script>
