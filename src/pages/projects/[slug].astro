@@ -113,7 +113,9 @@ const { Content } = await render(project);
           </div>
         )}
 
-        {(data.links.repo || data.links.live) && (
+        {(data.links.repo ||
+          data.links.live ||
+          (data.credits && data.credits.length > 0)) && (
           <div class="flex flex-wrap gap-6 text-sm text-fg">
             {data.links.live && (
               <a
@@ -135,6 +137,16 @@ const { Content } = await render(project);
                 Source ↗
               </a>
             )}
+            {data.credits?.map((credit) => (
+              <a
+                href={credit.href}
+                class="hover:text-accent"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {credit.label} ↗
+              </a>
+            ))}
           </div>
         )}
       </div>

@@ -40,6 +40,14 @@ const projects = defineCollection({
           poster: image().optional(),
         })
         .optional(),
+      credits: z
+        .array(
+          z.object({
+            label: z.string(),
+            href: z.string(),
+          }),
+        )
+        .optional(),
     }),
 });
 

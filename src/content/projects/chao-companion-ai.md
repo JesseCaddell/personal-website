@@ -28,6 +28,9 @@ image:
   frame: false
 video:
   src: "https://files.catbox.moe/tvn3p2.mp4"
+credits:
+  - label: "L2D Artist/Rigger"
+    href: "https://vgen.co/LuckCapsule"
 ---
 
 A real-time AI companion character rendered in VTube Studio: it listens to a streamer's voice and Twitch chat, replies with synthesized speech, and expresses itself physically through emotes and continuous procedural motion, building memory of returning viewers across sessions.
