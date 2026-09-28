@@ -5,6 +5,8 @@ const links = [
   { href: "/#resume", label: "[03] Experience" },
   { href: "/resume", label: "[04] Resume" },
 ];
+
+const activeHref = Astro.url.pathname === "/resume" ? "/resume" : "/#about";
 ---
 
 <header class="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
@@ -14,12 +16,12 @@ const links = [
     <span class="text-xs text-muted">// dev.profile</span>
   </a>
   <nav class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm sm:gap-x-8">
-    {links.map(({ href, label }, i) => (
+    {links.map(({ href, label }) => (
       <a
         href={href}
         class:list={[
           "whitespace-nowrap transition-colors hover:text-fg",
-          i === 0 ? "text-fg" : "text-muted",
+          href === activeHref ? "text-fg" : "text-muted",
         ]}
       >
         {label}
