@@ -137,6 +137,8 @@ const projects = (await getCollection("projects")).sort(
     [...resolved, ...unresolved].forEach((entry, i) => {
       entry.card.style.order = String(i);
       entry.card.hidden = i >= 4;
+      const indexEl = entry.card.querySelector<HTMLElement>("[data-index]");
+      if (indexEl) indexEl.textContent = String(i + 1).padStart(2, "0");
     });
   }
 

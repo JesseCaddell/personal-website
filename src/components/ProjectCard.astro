@@ -26,7 +26,7 @@ const { slug, index, tag, status, name, description, image } = Astro.props;
 >
   <div class="flex w-full items-center justify-between text-xs">
     <span class="text-accent">
-      [{index}] {tag}
+      [<span data-index>{index}</span>] {tag}
     </span>
     <span class="text-muted">{status}</span>
   </div>
