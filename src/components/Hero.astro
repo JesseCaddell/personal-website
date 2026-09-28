@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import divider from "../assets/hero-divider.svg";
+import profilePhoto from "../assets/profile-photo.jpg";
 
 interface Props {
   class?: string;
@@ -28,28 +30,32 @@ const { class: className } = Astro.props;
     </p>
   </div>
 
-  <div
-    class="flex h-[280px] w-full shrink-0 flex-col gap-4 overflow-hidden rounded-md border border-line bg-surface p-[23px] lg:w-[440px]"
-    aria-hidden="true"
-  >
-    <div class="flex items-center justify-between text-[11px]">
-      <span class="text-accent">sys_status: ACTIVE</span>
-      <span class="text-muted">0x4F92</span>
+  <div class="flex h-[280px] w-full shrink-0 flex-col overflow-hidden rounded-md border border-line bg-surface lg:w-[440px]">
+    <div class="flex flex-col gap-4 p-[23px] pb-0">
+      <div
+        class="flex items-center justify-between text-[11px]"
+        aria-hidden="true"
+      >
+        <span class="text-accent">sys_status: ACTIVE</span>
+        <span class="text-muted">0x4F92</span>
+      </div>
+      <div class="relative h-0 w-full">
+        <img
+          src={divider.src}
+          width={divider.width}
+          height={divider.height}
+          alt=""
+          class="absolute -top-px left-0 h-px w-full"
+        />
+      </div>
     </div>
-    <div class="relative h-0 w-full">
-      <img
-        src={divider.src}
-        width={divider.width}
-        height={divider.height}
-        alt=""
-        class="absolute -top-px left-0 h-px w-full"
+    <div class="relative mt-4 min-h-0 flex-1 overflow-hidden">
+      <Image
+        src={profilePhoto}
+        alt="Jesse Caddell"
+        width={880}
+        class="absolute inset-0 h-full w-full object-cover"
       />
-    </div>
-    <div class="flex flex-1 flex-col items-center justify-center gap-2">
-      <div class="h-2 w-[320px] max-w-full rounded bg-track"></div>
-      <div class="h-2 w-[260px] max-w-full rounded bg-accent"></div>
-      <div class="h-2 w-[180px] max-w-full rounded bg-track"></div>
-      <span class="text-xs text-muted">[Personal Branding Blueprint]</span>
     </div>
   </div>
 </section>
