@@ -39,3 +39,6 @@ docs/screenshots/
 
 # intermediate PDF export — the site serves the copy in public/
 docs/jesse-caddell-resume.pdf
+
+# source GIF — the site serves the copy in public/
+docs/lif.gif
