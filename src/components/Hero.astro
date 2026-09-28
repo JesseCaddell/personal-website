@@ -31,7 +31,7 @@ const { class: className } = Astro.props;
   </div>
 
   <div class="flex h-[280px] w-full shrink-0 flex-col overflow-hidden rounded-md border border-line bg-surface lg:w-[440px]">
-    <div class="flex flex-col gap-4 p-[23px] pb-0">
+    <div class="flex flex-col gap-[10px] p-[23px] pb-0">
       <div
         class="flex items-center justify-between text-[11px]"
         aria-hidden="true"
@@ -49,13 +49,19 @@ const { class: className } = Astro.props;
         />
       </div>
     </div>
-    <div class="relative mt-4 min-h-0 flex-1 overflow-hidden">
-      <Image
-        src={profilePhoto}
-        alt="Jesse Caddell"
-        width={880}
-        class="absolute inset-0 h-full w-full object-cover"
-      />
+    <div class="mt-[8px] flex min-h-0 flex-1 flex-col items-center gap-2 px-[23px] pb-2">
+      <div class="relative h-[176px] w-[176px] shrink-0 overflow-hidden rounded-full border-2 border-accent">
+        <Image
+          src={profilePhoto}
+          alt="Jesse Caddell"
+          width={352}
+          class="absolute inset-0 h-full w-full object-cover object-top"
+        />
+      </div>
+      <div class="flex flex-col items-center gap-[2px] text-center">
+        <p class="text-sm font-bold">jesse.caddell</p>
+        <p class="text-[11px] text-accent">// full-stack dev</p>
+      </div>
     </div>
   </div>
 </section>

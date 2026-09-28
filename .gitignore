@@ -33,3 +33,6 @@ docs/*.docx
 
 # raw source photo — the site uses the copy in src/assets/
 docs/2025-08_Professional Portrait-64.jpg
+
+# scratch Figma mockup reference
+docs/screenshots/
