@@ -50,12 +50,20 @@ const { class: className } = Astro.props;
       </div>
     </div>
     <div class="mt-[8px] flex min-h-0 flex-1 flex-col items-center gap-2 px-[23px] pb-2">
-      <div class="relative h-[176px] w-[176px] shrink-0 overflow-hidden rounded-full border-2 border-accent">
+      <div class="group relative h-[176px] w-[176px] shrink-0 overflow-hidden rounded-full border-2 border-accent">
         <Image
           src={profilePhoto}
           alt="Jesse Caddell"
           width={352}
           class="absolute inset-0 h-full w-full object-cover object-top"
+        />
+        <img
+          src="/Fast_tap_tap_smooth.gif"
+          alt=""
+          aria-hidden="true"
+          width="480"
+          height="480"
+          class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-150 group-hover:opacity-100"
         />
       </div>
       <div class="flex flex-col items-center gap-[2px] text-center">
